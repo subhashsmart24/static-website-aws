@@ -12,7 +12,22 @@ http://static-website-aws-798306367943.s3-website.ap-south-1.amazonaws.com
 
 ## Architecture
 
-GitHub Repository → GitHub Actions → AWS IAM (OIDC) → Amazon S3 → Live Website
+## Architecture
+
+```mermaid
+flowchart TD
+    A[Developer] -->|Push code| B[GitHub Repository]
+    B -->|Trigger workflow| C[GitHub Actions]
+
+    C -->|Request OIDC token| D[AWS IAM OIDC Provider]
+    D -->|Verify identity and assume role| E[IAM Deployment Role]
+    E -->|Temporary credentials| C
+
+    C -->|AWS CLI sync| F[Amazon S3 Bucket]
+    F -->|Serve website| G[Live Website]
+
+    H[Terraform] -->|Provision infrastructure| F
+```
 
 ## Technologies Used
 
