@@ -12,8 +12,6 @@ http://static-website-aws-798306367943.s3-website.ap-south-1.amazonaws.com
 
 ## Architecture
 
-## Architecture
-
 ```mermaid
 flowchart TD
     A[Developer] -->|Push code| B[GitHub Repository]
